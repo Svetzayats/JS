@@ -1,4 +1,4 @@
-function playRound (playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     let result;
     if (playerSelection === null || playerSelection === undefined || computerSelection === null || computerSelection === undefined) {
         return result = "Что-то пошло не так...";
@@ -24,28 +24,28 @@ function game() {
     while ((playerScore + computerScore) < 5) {
         let playerSelection = prompt("Сделайте свой ход - выберите rock, paper или scissors. Если введете что-то другое, то проиграете", "rock").toLocaleLowerCase();
         let computerSelection = computerPlay();
-        console.log ( "Вы выкинули - " + playerSelection + ". А компьютер - " + computerSelection + "." );
+        console.log("Вы выкинули - " + playerSelection + ". А компьютер - " + computerSelection + ".");
         let result = playRound(playerSelection, computerSelection);
         if (result === "Что-то пошло не так..."
-        || result === "Ничья!") {
+            || result === "Ничья!") {
             continue;
         }
         else if (result === "Игрок выиграл!") {
-            console.log (result + "\n Счет: Игрок - " + playerScore + ", компьютер - " + computerScore);
+            console.log(result + "\n Счет: Игрок - " + playerScore + ", компьютер - " + computerScore);
             playerScore++;
             continue;
         }
         else if (playRound(playerSelection, computerSelection) === "Компьютер выиграл!") {
-            console.log (result + "\n Счет: Игрок - " + playerScore + ", компьютер - " + computerScore);
+            console.log(result + "\n Счет: Игрок - " + playerScore + ", компьютер - " + computerScore);
             computerScore++;
             continue;
         }
     }
 
     if (playerScore > computerScore) {
-        console.log ("Игрок выиграл со счетом " + playerScore + ":" + computerScore + "!");
+        console.log("Игрок выиграл со счетом " + playerScore + ":" + computerScore + "!");
     }
     else {
-        console.log ("Компьютер выиграл со счетом " + playerScore + ":" + computerScore + "!");
+        console.log("Компьютер выиграл со счетом " + playerScore + ":" + computerScore + "!");
     }
 }

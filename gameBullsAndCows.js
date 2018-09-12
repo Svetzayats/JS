@@ -2,7 +2,7 @@
 // генерируем 4хзначное число с неповторяющимися цифрами, которое будут угадывать
 
 
-function createGuessNumber () {
+function createGuessNumber() {
     let objectGuessNumber = new Set();
 
     while (objectGuessNumber.size < 4) {
@@ -15,24 +15,23 @@ function createGuessNumber () {
 }
 
 
-
-function game () {
+function game() {
     let guessNumber = createGuessNumber();
     let counterCows;
     let counterBulls;
 
     do {
 
-        let userAnswer = prompt ('Введите 4хзначное число, в котором не повторяются цифры', 1234);
+        let userAnswer = prompt('Введите 4хзначное число, в котором не повторяются цифры', 1234);
 
 
         if (userAnswer === null || userAnswer === '') {
-            alert ('Вы ничего не ввели, попробуйте еще раз');
+            alert('Вы ничего не ввели, попробуйте еще раз');
             continue;
         }
 
         else if (userAnswer.length !== 4) {
-            alert ('Это не 4хзначное число. Должно быть 4 цифры, попробуйте еще раз');
+            alert('Это не 4хзначное число. Должно быть 4 цифры, попробуйте еще раз');
             continue;
         }
 
@@ -44,7 +43,7 @@ function game () {
             counterBulls = 0;
             counterCows = 0;
 
-            for (let i=0; i<=3; i++) {
+            for (let i = 0; i <= 3; i++) {
                 if (userAnswer[i] == guessNumber[i]) {
                     counterBulls++;
                     continue;
@@ -56,7 +55,7 @@ function game () {
                 }
             }
 
-            alert ('Быков: ' + counterBulls + ', коров: ' + counterCows);
+            alert('Быков: ' + counterBulls + ', коров: ' + counterCows);
         }
 
     } while (counterBulls != 4)

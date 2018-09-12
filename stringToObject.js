@@ -23,14 +23,14 @@ let style = `
 `;
 
 function camelize(str) {
-    let  arr = str.split ('-');
+    let arr = str.split('-');
     for (let i = 1; i < arr.length; i++) {
         arr[i] = arr[i].charAt(0).toUpperCase() + arr[i].slice(1);
     }
-    return (arr.join (''));
+    return (arr.join(''));
 }
 
-function styleToObject (str) {
+function styleToObject(str) {
     let pairs = str.trim().split(';').filter(Boolean);
     for (let i = 0; i <= pairs.length; i++) {
         let str1 = pairs[i];
@@ -39,17 +39,16 @@ function styleToObject (str) {
         }
         else continue;
 
-        for (let j = 0; j <pairs[i].length; j++) {
+        for (let j = 0; j < pairs[i].length; j++) {
             let str2 = pairs[i][j];
-            pairs[i][j] = camelize (str2.trim());
+            pairs[i][j] = camelize(str2.trim());
         }
     }
-    return new Map (pairs);
+    return new Map(pairs);
 }
 
 let objectFromStyle = styleToObject(style);
 console.log(objectFromStyle);
-
 
 
 /*

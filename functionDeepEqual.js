@@ -15,7 +15,7 @@ let object2 = {
     age: 10
 };
 
-function deepEqual (a, b) {
+function deepEqual(a, b) {
     if (a === b) {
         return true;
     }
@@ -45,4 +45,4 @@ function deepEqual (a, b) {
 
 }
 
-console.log (deepEqual(object2, object1));
+console.log(deepEqual(object2, object1));
