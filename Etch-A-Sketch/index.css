@@ -29,12 +29,14 @@ h1 {
 	width: 100%; 
 	margin: auto;
 	box-sizing:border-box;
+	display: block; 
 }
 
 .grid {
 	height: 100%;
 	box-sizing:border-box; 
 	display: inline-block;
+	float:left;
 	border: 0.1px solid #ccc; 
 
 }

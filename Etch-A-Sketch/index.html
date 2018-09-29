@@ -31,18 +31,19 @@
 
 		let container = document.querySelector('.container');
 
+
 		//create squares in container 
 		function createGrid(numberSquares) { 
 
 			for (let row = 1; row <= numberSquares; row++) {
 				let gridRow = document.createElement('div'); 
 				gridRow.classList.add('gridRow'); 
-				gridRow.style.height = (100 / numberSquares) + '%'; 
+				gridRow.style.height = (480 / numberSquares) + 'px'; 
 
 				for (let col = 1; col <= numberSquares; col++) {
 					let grid = document.createElement('div'); 
 					grid.classList.add('grid'); 
-					grid.style.width = (100 / numberSquares) + '%'; 
+					grid.style.width = (480 / numberSquares) + 'px'; 
 					gridRow.append(grid); 
 				 }
 			container.append(gridRow); 
