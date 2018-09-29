@@ -1,0 +1,118 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="index.css">
+  <title>Etch-A-Sketch by Svetzayats</title>
+</head>
+
+<body onload="createGrid(16)">
+
+	<header>
+		<div class="button-1">
+			<button id="size">Change size</button>
+		</div>
+		<div class="button-2">
+			<button id="clear">Clear</button>
+		</div>
+		<h1>Etch-A-Sketch</h1>
+		
+	</header>
+	
+	<div class="container"></div>
+
+	<footer>
+		
+	</footer>
+
+
+	<script type="text/javascript">
+
+		let container = document.querySelector('.container');
+
+		//create squares in container 
+		function createGrid(numberSquares) { 
+
+			for (let row = 1; row <= numberSquares; row++) {
+				let gridRow = document.createElement('div'); 
+				gridRow.classList.add('gridRow'); 
+				gridRow.style.height = (100 / numberSquares) + '%'; 
+
+				for (let col = 1; col <= numberSquares; col++) {
+					let grid = document.createElement('div'); 
+					grid.classList.add('grid'); 
+					grid.style.width = (100 / numberSquares) + '%'; 
+					gridRow.append(grid); 
+				 }
+			container.append(gridRow); 
+			}
+			
+		}
+
+		function getRandomColor() {
+  			var letters = '0123456789ABCDEF';
+  			var color = '#';
+  			for (var i = 0; i < 6; i++) {
+    			color += letters[Math.floor(Math.random() * 16)];
+  			}
+  			return color;
+		}
+
+		function changeColor(e) {
+			let randomColor = getRandomColor(); 
+			let elem = e.Target; 
+			elem.style.backgroundColor = randomColor; 
+		}
+
+		//handlers for all grid
+		/*let grids = document.querySelectorAll('.grid'); 
+		grids.forEach((grid) => {
+			grid.addEventListener('mouseover', (e) => {
+				changeColor(e); 
+			}); 
+		}); 
+		*/
+
+		//change size of grid
+		let buttonChangeSize = document.getElementById('size'); 
+
+		function askSizeGrid () {
+			let number = prompt ('Enter size for the grid, integer number between 1 and 64', '16'); 
+			if (number === null) {
+				alert ('You did not input anything');
+				return false;  
+			}
+			else {
+				if (isNaN(number)) {
+				alert ('It is not number, try again');  
+				changeSizeGrid(); 
+				}
+				else {
+				number = +number; 
+					if (number < 1 || number > 64) {
+						alert ('Number is not between 1 and 64. Try again!'); 
+						changeSizeGrid(); 
+						}
+					if (number - Math.trunc(number)) {
+						alert('Number is not integer. Try again!'); 
+						changeSizeGrid();  
+					}
+				}
+			}
+			return number;  	
+		}
+
+		function changeSizeGrid() {
+			let size = askSizeGrid(); 
+			container.innerHTML = "";
+			createGrid(size);  
+
+		}
+
+		buttonChangeSize.onclick = changeSizeGrid; 
+
+
+	</script>
+</body>
+</html>
