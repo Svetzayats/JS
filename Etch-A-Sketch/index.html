@@ -31,7 +31,6 @@
 
 		let container = document.querySelector('.container');
 
-
 		//create squares in container 
 		function createGrid(numberSquares) { 
 
@@ -48,36 +47,33 @@
 				 }
 			container.append(gridRow); 
 			}
-			
+			changeColor(); 
 		}
 
 		function getRandomColor() {
   			var letters = '0123456789ABCDEF';
   			var color = '#';
   			for (var i = 0; i < 6; i++) {
-    			color += letters[Math.floor(Math.random() * 16)];
+    			color += letters[Math.round(Math.random() * 16)];
   			}
-  			return color;
+  			if (color !== "#FFFFFF") return color;
+  			else getRandomColor(); 
 		}
 
-		function changeColor(e) {
-			let randomColor = getRandomColor(); 
-			let elem = e.Target; 
-			elem.style.backgroundColor = randomColor; 
-		}
+		let grids = document.getElementsByClassName('grid');
 
-		//handlers for all grid
-		/*let grids = document.querySelectorAll('.grid'); 
-		grids.forEach((grid) => {
-			grid.addEventListener('mouseover', (e) => {
-				changeColor(e); 
-			}); 
-		}); 
-		*/
-
+		function changeColor() {
+			for (let grid of grids) {
+				  grid.onmouseover = function () {
+				  	let randomColor = getRandomColor();
+				  	grid.style.backgroundColor = randomColor;  	
+				};  
+			}
+		}		
+		
 		//change size of grid
 		let buttonChangeSize = document.getElementById('size'); 
-
+		buttonChangeSize.onclick = changeSizeGrid; 
 		function askSizeGrid () {
 			let number = prompt ('Enter size for the grid, integer number between 1 and 64', '16'); 
 			if (number === null) {
@@ -108,10 +104,17 @@
 			let size = askSizeGrid(); 
 			container.innerHTML = "";
 			createGrid(size);  
-
 		}
 
-		buttonChangeSize.onclick = changeSizeGrid; 
+		//clear: white grid with user size 
+		let buttonClear = document.getElementById('clear'); 
+		buttonClear.onclick = clearGrid; 
+		function clearGrid() {
+			for (let grid of grids) {
+				 	grid.style.backgroundColor = '#FFFFFF';  	
+				};  
+		}
+		 
 
 
 	</script>
