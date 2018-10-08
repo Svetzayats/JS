@@ -12,6 +12,7 @@ function createGrid(numberSquares) {
 			let grid = document.createElement('div'); 
 			grid.classList.add('grid'); 
 			grid.style.width = (480 / numberSquares) + 'px'; 
+			grid.style.backgroundColor = "rgb(255, 255, 255)"; 
 			gridRow.append(grid); 
 			}
 		container.append(gridRow); 
@@ -28,10 +29,10 @@ function randomForRGB() {
 
 //color function
 function getRandomColor() {
-  	let r = randomForRGB + ", ";
-  	let g = randomForRGB + ", "; 
-  	let b = randomForRGB + ")";
-  	let color = 'rbg(' + r + g + b; 	
+  	let r = randomForRGB() + ", ";
+  	let g = randomForRGB() + ", "; 
+  	let b = randomForRGB() + ")";
+  	let color = 'rgb(' + r + g + b; 	
   	if (color !== "rgb(255, 255, 255)") return color;
   	else getRandomColor(); 
 }
@@ -39,11 +40,19 @@ function getRandomColor() {
 function changeColor() {
 	for (let grid of grids) {
 		grid.onmouseover = function () {
-			if (grid.style.backgroundColor !== 'rgb(255, 255, 255)') {
-
-			}
-			let randomColor = getRandomColor();
-			grid.style.backgroundColor = randomColor;  	
+			if (grid.style.backgroundColor !== "rgb(255, 255, 255)") {
+				let colorGrid = grid.style.backgroundColor
+					.slice(4, grid.style.backgroundColor.length - 1)
+					.split(', ');  
+				let r = Math.round(+colorGrid[0] * 0.9); 
+				let g = Math.round(+colorGrid[1] * 0.9); 
+				let b = Math.round(+colorGrid[2] * 0.9); 
+				let color = 'rgb(' + r + ', ' + g + ', ' + b + ")"; 
+				grid.style.backgroundColor = color; 
+			} else {
+				let randomColor = getRandomColor();
+				grid.style.backgroundColor = randomColor;
+			}  	
 		};  
 	}
 }		
@@ -88,7 +97,7 @@ let buttonClear = document.getElementById('clear');
 buttonClear.onclick = clearGrid; 
 function clearGrid() {
 	for (let grid of grids) {
-	grid.style.backgroundColor = '#FFFFFF';  	
+	grid.style.backgroundColor = "rgb(255, 255, 255)";  	
 	};  
 }
 
