@@ -19,22 +19,31 @@ function createGrid(numberSquares) {
 	changeColor(); 
 }
 
+//random number between 0 and 255 
+function randomForRGB() {
+    let rand = Math.random() * (256);
+    rand = Math.floor(rand);
+    return rand;
+  }
+
 //color function
 function getRandomColor() {
-  	let letters = '0123456789ABCDEF';
-  	let color = '#';
-  	for (let i = 0; i < 6; i++) {
-    	color += letters[Math.round(Math.random() * 16)];
-  	}
-  	if (color !== "#FFFFFF") return color;
+  	let r = randomForRGB + ", ";
+  	let g = randomForRGB + ", "; 
+  	let b = randomForRGB + ")";
+  	let color = 'rbg(' + r + g + b; 	
+  	if (color !== "rgb(255, 255, 255)") return color;
   	else getRandomColor(); 
 }
 
 function changeColor() {
 	for (let grid of grids) {
 		grid.onmouseover = function () {
-		let randomColor = getRandomColor();
-		grid.style.backgroundColor = randomColor;  	
+			if (grid.style.backgroundColor !== 'rgb(255, 255, 255)') {
+
+			}
+			let randomColor = getRandomColor();
+			grid.style.backgroundColor = randomColor;  	
 		};  
 	}
 }		
