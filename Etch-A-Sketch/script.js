@@ -27,7 +27,7 @@ function randomForRGB() {
     return rand;
   }
 
-//color function
+//random color function
 function getRandomColor() {
   	let r = randomForRGB() + ", ";
   	let g = randomForRGB() + ", "; 
@@ -36,6 +36,7 @@ function getRandomColor() {
   	if (color !== "rgb(255, 255, 255)") return color;
   	else getRandomColor(); 
 }
+
 
 function changeColor() {
 	for (let grid of grids) {
@@ -64,7 +65,7 @@ function askSizeGrid () {
 	let number = prompt ('Enter size for the grid, integer number between 1 and 64', '16'); 
 	if (number === null) {
 		alert ('You did not input anything');
-		return false;  
+		return 16;
 	}
 	else {
 		if (isNaN(number)) {
